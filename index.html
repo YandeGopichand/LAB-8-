@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            width: 450px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        
+        .gender {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        
+        .gender label {
+            font-weight: normal;
+            margin: 0;
+        }
+        
+        .gender input {
+            width: auto;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>User Information Form</h2>
+
+        <form id="userForm">
+
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+
+            <label>Gender</label>
+
+            <div class="gender">
+                <label>
+                    <input type="radio" name="gender" value="Male" required>
+                    Male
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+
+                <label>
+                    <input type="radio" name="gender" value="Other">
+                    Other
+                </label>
+            </div>
+
+            <label for="mobile">Mobile Number</label>
+            <input type="tel" id="mobile" pattern="[0-9]{10}" placeholder="Enter 10 digit mobile number" required>
+
+            <label for="email">Email ID</label>
+            <input type="email" id="email" required>
+
+            <label for="city">City</label>
+            <input type="text" id="city" required>
+
+            <label for="state">State</label>
+            <input type="text" id="state" required>
+
+            <label for="country">Country</label>
+            <input type="text" id="country" required>
+
+            <button type="submit">Submit Information</button>
+
+        </form>
+
+    </div>
+
+    <script>
+        document.getElementById("userForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+
+            const userData = {
+                name: document.getElementById("name").value,
+                gender: gender,
+                mobile: document.getElementById("mobile").value,
+                email: document.getElementById("email").value,
+                city: document.getElementById("city").value,
+                state: document.getElementById("state").value,
+                country: document.getElementById("country").value
+            };
+
+            localStorage.setItem("userData", JSON.stringify(userData));
+
+            window.location.href = "display.html";
+
+        });
+    </script>
+
+</body>
+
+</html>

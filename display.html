@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            width: 450px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+        }
+        
+        .details {
+            line-height: 2;
+            font-size: 16px;
+        }
+        
+        .details p {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        strong {
+            color: #1e3a8a;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>User Details</h2>
+
+        <div class="details" id="details"></div>
+
+        <button onclick="goBack()">Go Back</button>
+
+    </div>
+
+    <script>
+        const userData = JSON.parse(localStorage.getItem("userData"));
+
+        if (userData) {
+
+            document.getElementById("details").innerHTML = `
+                <p><strong>Name:</strong> ${userData.name}</p>
+                <p><strong>Gender:</strong> ${userData.gender}</p>
+                <p><strong>Mobile Number:</strong> ${userData.mobile}</p>
+                <p><strong>Email ID:</strong> ${userData.email}</p>
+                <p><strong>City:</strong> ${userData.city}</p>
+                <p><strong>State:</strong> ${userData.state}</p>
+                <p><strong>Country:</strong> ${userData.country}</p>
+            `;
+
+        } else {
+
+            document.getElementById("details").innerHTML =
+                "<p>No user information found.</p>";
+
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+
+</html>
